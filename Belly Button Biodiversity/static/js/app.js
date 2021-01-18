@@ -1,5 +1,5 @@
 //HORIZONTAL BAR PLOT - TOP 10 OTU ID WITH HIGHEST SAMPLE VALUES
-function SamplePlot() {
+function Plots() {
 
   //Retreive JSON data to be used to extract information
   d3.json("samples.json").then((data)=> {console.log(data)
@@ -88,7 +88,7 @@ function SamplePlot() {
     
     };
 
-SamplePlot();
+Plots();
 
 // METADATA INFO ON DROPDOWN MENU
 
@@ -128,15 +128,35 @@ function DropDown(){
 };
 DropDown();
 
-function IDLookup(){
+d3.selectAll("#selDataset").on("change", IDLookup);
+
+function IDLookup(id){
 
   //Retreive JSON data to be used to extract information
+
+  var dropdownMenu = d3.select("#selDataset");
+
+  var dataset = dropdownMenu.property("value");
+
+  var demographics = [];
+
   d3.json("samples.json").then((data)=> {console.log(data)
 
      //Retreive an metadata list to be displayed in the Demographics Info section
     var metadata = data.metadata;
     //Display metadata list
     console.log(metadata)
+
+    var names = data.names;
+
+    metadata.forEach((id) => {
+
+      var row = d3.select("#sample-metadata").append("tr");
+      Object.entries(id).forEach(([key, values]) => {
+      row.text(key);
+      
+      })
+    });
   });
 };
 
