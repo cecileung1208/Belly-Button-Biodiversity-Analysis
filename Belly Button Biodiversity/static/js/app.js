@@ -1,5 +1,5 @@
 //HORIZONTAL BAR PLOT - TOP 10 OTU ID WITH HIGHEST SAMPLE VALUES
-function barPlot() {
+function SamplePlot() {
 
   //Retreive JSON data on console log.  Easier to view data structure in console.
   d3.json("samples.json").then((data)=> {console.log(data)
@@ -45,6 +45,7 @@ function barPlot() {
     console.log(samples);
     console.log(labels)
 
+    // Trace1 for Top 10 OTU_ID Found
 
     var trace1 = {
       x: samples,
@@ -53,26 +54,34 @@ function barPlot() {
       type:"bar",
       orientation: "h",
     }
+    var trace2={
+      x: otu_list,
+      y: samples_list,
+      mode: 'markers',
+    
+    }
 
+    //data
     var data = [trace1];
+    var data2=[trace2]
 
-    var layout = {title: "Top 10 OTU",
+    //Apply the group bar mode to the layout
+    var layout = {title: "Top 10 OTU IDs Found",
                   margin: {
-                            l: 100,
-                            r: 100,
-                            t: 100,
-                            b: 100
+                            l: 120,
+                            r: 40,
+                            t: 75,
+                            b: 75
                           },
                   };
 
+    //Render the plot to the div tag with id "plot"
     Plotly.newPlot("bar", data, layout);
+    Plotly.newPlot("bubble", data2);
 
     })
     
     };
 
-
-barPlot();
-
-
+SamplePlot();
 
