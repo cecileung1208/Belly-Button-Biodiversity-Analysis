@@ -91,7 +91,8 @@ function SamplePlot() {
 SamplePlot();
 
 // METADATA INFO ON DROPDOWN MENU
-function IDLookup(){
+
+function DropDown(){
   //Retreive JSON data to be used to extract information
   d3.json("samples.json").then((data)=> {console.log(data)
 
@@ -121,19 +122,22 @@ function IDLookup(){
 
       //Insert the id names into the dropdown menu
       select.insertBefore(option, select.lastChild);
-    }
+    };
 
   });
 };
-
-IDLookup();
+DropDown();
 
 function IDLookup(){
 
   //Retreive JSON data to be used to extract information
   d3.json("samples.json").then((data)=> {console.log(data)
 
-    var names = data.names;
-    console.log(names)
+     //Retreive an metadata list to be displayed in the Demographics Info section
+    var metadata = data.metadata;
+    //Display metadata list
+    console.log(metadata)
   });
 };
+
+IDLookup();
