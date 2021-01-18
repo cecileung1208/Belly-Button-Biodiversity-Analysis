@@ -61,7 +61,6 @@ function SamplePlot() {
       mode: "markers",
       marker: {
         color: otu_list,
-        colorscale: otu_list,
         size: samples_list,
         }
     };
@@ -91,3 +90,31 @@ function SamplePlot() {
 
 SamplePlot();
 
+// METADATA INFO ON DROPDOWN MENU
+
+
+// Use D3 to create an event handler
+
+function inputID(){
+  d3.json("samples.json").then((data)=> {console.log(data)
+
+    var names = data.names;
+    console.log(names)
+
+    var select = document.getElementById("selDataset");
+
+    
+
+    for (i=0; i< names.length; i++)
+    {
+      var option = document.createElement("OPTION");
+      var txt = document.createTextNode(names[i]);
+      option.appendChild(txt);
+      option.setAttribute("value",names[i]);
+      select.insertBefore(option, select.lastChild);
+    }
+
+  });
+};
+
+  inputID()
