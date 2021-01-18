@@ -57,12 +57,18 @@ function SamplePlot() {
     var trace2={
       x: otu_list,
       y: samples_list,
-      mode: 'markers',
+      text: otu_labels_list,
+      mode: "markers",
+      marker: {
+        color: otu_list,
+        colorscale: otu_list,
+        size: samples_list,
+        }
+    };
     
-    }
 
     //data
-    var data = [trace1];
+    var data1 = [trace1];
     var data2=[trace2]
 
     //Apply the group bar mode to the layout
@@ -76,7 +82,7 @@ function SamplePlot() {
                   };
 
     //Render the plot to the div tag with id "plot"
-    Plotly.newPlot("bar", data, layout);
+    Plotly.newPlot("bar", data1, layout);
     Plotly.newPlot("bubble", data2);
 
     })
