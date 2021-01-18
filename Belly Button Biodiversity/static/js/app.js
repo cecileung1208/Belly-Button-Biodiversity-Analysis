@@ -1,7 +1,7 @@
 //HORIZONTAL BAR PLOT - TOP 10 OTU ID WITH HIGHEST SAMPLE VALUES
 function SamplePlot() {
 
-  //Retreive JSON data on console log.  Easier to view data structure in console.
+  //Retreive JSON data to be used to extract information
   d3.json("samples.json").then((data)=> {console.log(data)
 
     //Retreive the first sample id
@@ -91,30 +91,49 @@ function SamplePlot() {
 SamplePlot();
 
 // METADATA INFO ON DROPDOWN MENU
-
-
-// Use D3 to create an event handler
-
-function inputID(){
+function IDLookup(){
+  //Retreive JSON data to be used to extract information
   d3.json("samples.json").then((data)=> {console.log(data)
 
+    //Retreive an id values in name list to create an array for the dropdown menu
     var names = data.names;
+    //Display names list 
     console.log(names)
 
+    //Select the dropdown menu into html file
     var select = document.getElementById("selDataset");
 
     
-
+    //Loop through each item in the name list to add in the dropdown menu
     for (i=0; i< names.length; i++)
     {
+      //Create a new div element
       var option = document.createElement("OPTION");
-      var txt = document.createTextNode(names[i]);
-      option.appendChild(txt);
+
+      //Give some content to the element
+      var id = document.createTextNode(names[i]);
+
+      //Add the text node to the newly created div
+      option.appendChild(id);
+
+      //Set value in name list
       option.setAttribute("value",names[i]);
+
+      //Insert the id names into the dropdown menu
       select.insertBefore(option, select.lastChild);
     }
 
   });
 };
 
-  inputID()
+IDLookup();
+
+function IDLookup(){
+
+  //Retreive JSON data to be used to extract information
+  d3.json("samples.json").then((data)=> {console.log(data)
+
+    var names = data.names;
+    console.log(names)
+  });
+};
