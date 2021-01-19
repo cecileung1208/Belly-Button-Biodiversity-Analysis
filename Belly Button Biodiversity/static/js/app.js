@@ -1,31 +1,28 @@
-
-
-
 //HORIZONTAL BAR PLOT - TOP 10 OTU ID WITH HIGHEST SAMPLE VALUES
-function Plots(id) {
+function plots(id) {
 
   //Retreive JSON data to be used to extract information
   d3.json("samples.json").then((data)=> {console.log(data)
 
     //Retreive the first sample id
-
-    var samples_list = data.samples;
-    console.log(samples_list)
+    var sample_data = data.samples;
+    var samples_filter = sample_data.filter(object => object.id == id);
+    var samples= samples_filter[0]
+    
 
     //Retrieve the otu_ids for the first id
-    var otu_list = data.samples[0].otu_ids;
+    var otu_list = samples.otu_ids;
 
     //Retreive the sample_values for the first id
-    var samples_list = data.samples[0].sample_values;
+    var samples_list = samples.sample_values;
     
     //Retreive the otu_labels for the first id
-    var otu_labels_list = data.samples[0].otu_labels;
+    var otu_labels_list = samples.otu_labels;
   
 
     //Display lists for otu_id, sample_values, otu_labels
-    // console.log(otu_list);
-    // console.log(samples_list);
-    // console.log(otu_labels_list);
+   
+    console.log(sample_data, samples_filter, samples)
     
 
     //Only need the 10 otu_id with the highest sample_values, so we need to slice the data from 80 to 10
@@ -37,21 +34,20 @@ function Plots(id) {
     var otu_id = otu_id.map(row => "OTU_ID " + row)
     
     //Slice data for sample_values
-    var samples = samples_list.slice(0,10).reverse();
+    var values = samples_list.slice(0,10).reverse();
    
     //Slice data for labels
     var labels = otu_labels_list.slice(0,10).reverse();
     
 
     // //Display sliced lists for otu_id, sample_values, otu_labels
-    // console.log(otu_id);
-    // console.log(samples);
-    // console.log(labels)
+    console.log(otu_id, samples, labels);
+    
 
     // Trace1 for Top 10 OTU_ID Found
 
     var trace1 = {
-      x: samples,
+      x: values,
       y: otu_id,
       text: labels, 
       type:"bar",
@@ -91,18 +87,37 @@ function Plots(id) {
     
     };
 
-Plots();
 
-// METADATA INFO ON DROPDOWN MENU
+// DEMOGRAPHICS INFOMRATION
+
+function demographic(id){
+
+  //Retreive JSON data to be used to extract information
+  d3.json("samples.json").then((data)=> {
+    var metadata = data.metadata;
+    console.log(metadata)
+    var metadata_list = metadata.filter(object => object.id == id);
+    var results = metadata_list[0]
+    var select = d3.select("#sample-metadata");
+    select.html("");
+
+    Object.entries(results).forEach(([key, value]) => {
+      select.append("h6").text(`${key}: ${value}`);
+    });
+  });
+  };
+
+
+  // METADATA INFO ON DROPDOWN MENU
 
 function DropDown(){
   //Retreive JSON data to be used to extract information
-  d3.json("samples.json").then((data)=> {console.log(data)
+  d3.json("samples.json").then((data)=> {
 
     //Retreive an id values in name list to create an array for the dropdown menu
     var names = data.names;
     //Display names list 
-    console.log(names)
+    //console.log(names)
 
     //Select the dropdown menu into html file
     var select = document.getElementById("selDataset");
@@ -127,27 +142,19 @@ function DropDown(){
       select.insertBefore(option, select.lastChild);
     };
 
+    //Set the first id info/visuals to default
+
+    var firstID = names[0];
+
+    plots(firstID);
+    demographic(firstID);
   });
 };
+
+// create the function for the change event
+function optionChanged(id) {
+  plots(id);
+  demographic(id);
+}
+
 DropDown();
-
-d3.selectAll("#selDataset").on("change", IDLookup);
-
-function IDLookup(){
-
-  //Retreive JSON data to be used to extract information
-  d3.json("samples.json").then((data)=> {console.log(data)
-
-     //Retreive an metadata list to be displayed in the Demographics Info section
-    var metadata = data.metadata;
-    var results = metadata[0]
-    var demographics = d3.select("#sample-metadata");
-    demographics.html("");
-
-    Object.entries(results).forEach(([key, value]) => {
-      demographics.append("h6").text(`${key}: ${value}`);
-    });
-  });
-  };
-
-  IDLookup();
