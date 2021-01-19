@@ -4,7 +4,7 @@ function plots(id) {
   //Retreive JSON data to be used to extract information
   d3.json("samples.json").then((data)=> {console.log(data)
 
-    //Retreive the first sample id
+    //Retreive the sample dataset
     var sample_data = data.samples;
     //console.log(sample_data)
 
@@ -75,37 +75,46 @@ function plots(id) {
     
     };
 
-
 // DEMOGRAPHICS INFOMRATION
 
 function demographic(id){
 
   //Retreive JSON data to be used to extract information
   d3.json("samples.json").then((data)=> {
+
+    //Retreive the metadata dataset
     var metadata = data.metadata;
+
+    //Filter metadata by ID
     var metadata_list = metadata.filter(object => object.id == id);
     var results = metadata_list[0]
+
+     //Display what the datasets look like on the console
+     //console.log(metadata, metadata_list, results)
+
+    //Select the demographics info box
     var select = d3.select("#sample-metadata");
+
+    //Empty existing table before we select new id
     select.html("");
 
+    //Insert the filtered metadata into the demographics info box
     Object.entries(results).forEach(([key, value]) => {
       select.append("h6").text(`${key}: ${value}`);
 
-
-  //Display what the datasets look like on the console
-  //console.log(metadata, metadata_list, results)
+ 
       });
     });
   };
 
 
-  // METADATA INFO ON DROPDOWN MENU
+// METADATA INFO ON DROPDOWN MENU
 
 function DropDown(){
   //Retreive JSON data to be used to extract information
   d3.json("samples.json").then((data)=> {
 
-    //Retreive an id values in name list to create an array for the dropdown menu
+    //Retreive id values in name list to create an array for the dropdown menu
     var names = data.names;
     //Display names list 
     //console.log(names)
@@ -133,19 +142,18 @@ function DropDown(){
       select.insertBefore(option, select.lastChild);
     };
 
-    //Set the first id info/visuals to default
-
-    var firstID = names[0];
-
-    plots(firstID);
-    demographic(firstID);
+  //Set the first id info/visuals to default
+    plots(names[0]);
+    demographic(names[0]);
   });
 };
 
-// create the function for the change event
+
+//Create the function for the change event
 function optionChanged(id) {
   plots(id);
   demographic(id);
 }
 
+//Call DropDown() Function
 DropDown();
