@@ -1,5 +1,5 @@
 //HORIZONTAL BAR PLOT - TOP 10 OTU ID WITH HIGHEST SAMPLE VALUES
-function plots(id) {
+function BuildPlots(id) {
 
   //Retreive JSON data to be used to extract information
   d3.json("samples.json").then((data)=> {console.log(data)
@@ -77,7 +77,7 @@ function plots(id) {
 
 // DEMOGRAPHICS INFOMRATION
 
-function demographic(id){
+function MetaData(id){
 
   //Retreive JSON data to be used to extract information
   d3.json("samples.json").then((data)=> {
@@ -108,7 +108,7 @@ function demographic(id){
   };
 
 
-// METADATA INFO ON DROPDOWN MENU
+//DROPDOWN MENU
 
 function DropDown(){
   //Retreive JSON data to be used to extract information
@@ -142,17 +142,17 @@ function DropDown(){
       select.insertBefore(option, select.lastChild);
     };
 
-  //Set the first id info/visuals to default
-    plots(names[0]);
-    demographic(names[0]);
+  //Call the BuildPlots & MetaData function and display the visuals/demographics info from the first id
+    BuildPlots(names[0]);
+    MetaData(names[0]);
   });
 };
 
 
 //Create the function for the change event
 function optionChanged(id) {
-  plots(id);
-  demographic(id);
+  BuildPlots(id);
+  MetaData(id);
 }
 
 //Call DropDown() Function
