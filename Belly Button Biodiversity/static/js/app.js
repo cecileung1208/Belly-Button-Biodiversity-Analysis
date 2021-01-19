@@ -6,53 +6,41 @@ function plots(id) {
 
     //Retreive the first sample id
     var sample_data = data.samples;
+    //console.log(sample_data)
+
+    //Filter sample data by id
     var samples_filter = sample_data.filter(object => object.id == id);
     var samples= samples_filter[0]
-    
-
-    //Retrieve the otu_ids for the first id
+      
+    //Retrieve the otu_ids, sample_values, and otu_labels list from filtered id
     var otu_list = samples.otu_ids;
-
-    //Retreive the sample_values for the first id
     var samples_list = samples.sample_values;
-    
-    //Retreive the otu_labels for the first id
     var otu_labels_list = samples.otu_labels;
   
-
-    //Display lists for otu_id, sample_values, otu_labels
-   
-    console.log(sample_data, samples_filter, samples)
-    
-
-    //Only need the 10 otu_id with the highest sample_values, so we need to slice the data from 80 to 10
-
+    //Slice Data for sample-values, labels, otu_id as we only need to display the top 10 OTU ID with the highest sample value.
     //Slice data for otu_id in descending order as we want to show the otu_id with the highest sample value at the top
+    var sample_values = samples_list.slice(0,10).reverse();
+    var labels = otu_labels_list.slice(0,10).reverse();
     var otu_id = otu_list.slice(0,10).reverse();
     
     //Insert "OTU_ID" infront of each value in the otu_id array
     var otu_id = otu_id.map(row => "OTU_ID " + row)
     
-    //Slice data for sample_values
-    var values = samples_list.slice(0,10).reverse();
-   
-    //Slice data for labels
-    var labels = otu_labels_list.slice(0,10).reverse();
+    //Display what the datasets look like on the console
+    //console.log(sample_data, samples_filter, samples)
+    //console.log(otu_list, samples_list, otu_labels_list)
+    //console.log(otu_id, sample_values, labels);
     
-
-    // //Display sliced lists for otu_id, sample_values, otu_labels
-    console.log(otu_id, samples, labels);
-    
-
     // Trace1 for Top 10 OTU_ID Found
-
     var trace1 = {
-      x: values,
+      x: sample_values,
       y: otu_id,
       text: labels, 
       type:"bar",
       orientation: "h",
     }
+
+    // Trace 2 for the Sample Values for all the OTU_ID under each ID
     var trace2={
       x: otu_list,
       y: samples_list,
@@ -70,7 +58,7 @@ function plots(id) {
     var data2=[trace2]
 
     //Apply the group bar mode to the layout
-    var layout = {title: "Top 10 OTU IDs Found",
+    var layout1 = {title: "Top 10 OTU IDs Found",
                   margin: {
                             l: 120,
                             r: 40,
@@ -80,7 +68,7 @@ function plots(id) {
                   };
 
     //Render the plot to the div tag with id "plot"
-    Plotly.newPlot("bar", data1, layout);
+    Plotly.newPlot("bar", data1, layout1);
     Plotly.newPlot("bubble", data2);
 
     })
@@ -95,7 +83,6 @@ function demographic(id){
   //Retreive JSON data to be used to extract information
   d3.json("samples.json").then((data)=> {
     var metadata = data.metadata;
-    console.log(metadata)
     var metadata_list = metadata.filter(object => object.id == id);
     var results = metadata_list[0]
     var select = d3.select("#sample-metadata");
@@ -103,8 +90,12 @@ function demographic(id){
 
     Object.entries(results).forEach(([key, value]) => {
       select.append("h6").text(`${key}: ${value}`);
+
+
+  //Display what the datasets look like on the console
+  //console.log(metadata, metadata_list, results)
+      });
     });
-  });
   };
 
 
