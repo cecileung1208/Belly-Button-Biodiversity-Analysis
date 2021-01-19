@@ -125,21 +125,36 @@ function Gauge(id){
     var wfreq = results.wfreq;
   
     var trace3 = {
-      domain: { x: [0, 1], y: [0, 1] },
-      value: wfreq,
-      title: { text: "Scrubs per Week" },
-	  	type: "indicator",
-      mode: "gauge+number",
-      gauge: {
-              axis: {range: [null, 9]},
-
+      type: "pie",
+      showlegend: false, 
+      hole:0.4,  
+      rotation: 90,
+      values: [270/9, 270/9, 270/9, 270/9, 270/9, 270/9, 270/9, 270/9, 270/9, 270],
+      text: ["0-1","1-2","2-3","3-4","4-5","5-6","6-7","7-8","8-9"],
+      textinfo: "text",
+      textposition:"inside",
+      direction: "clockwise",
+      marker: {
+        colors:["f5f5f5", "#f2f2f2", "ecf9f2","c6ecd7","9fdfbc","#79d2a1","#53c687", "#39ac6d", "#2d8655", "white"],
+        labels: ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8-9',''],
+        hoverinfo: "label"
       }
     }
+  
 
     var data3 = [trace3]
 
-    var layout3 = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+    var layout3 = {
 
+  title: "<b>Belly Button Washing Frequency</b><br>Scrubs per Week",
+  xaxis: {visible: false, range: [-1, 1]},
+  yaxis: {visible: false, range: [-1, 1]}
+ };
+
+
+      
+
+      
     Plotly.newPlot('gauge', data3, layout3);
   
   });
