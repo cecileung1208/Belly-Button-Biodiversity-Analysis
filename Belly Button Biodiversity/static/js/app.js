@@ -1,13 +1,16 @@
+
+
+
 //HORIZONTAL BAR PLOT - TOP 10 OTU ID WITH HIGHEST SAMPLE VALUES
-function Plots() {
+function Plots(id) {
 
   //Retreive JSON data to be used to extract information
   d3.json("samples.json").then((data)=> {console.log(data)
 
     //Retreive the first sample id
-    var first_sample = data.samples[0];
-    //Display if information is displayed
-    console.log(first_sample)
+
+    var samples_list = data.samples;
+    console.log(samples_list)
 
     //Retrieve the otu_ids for the first id
     var otu_list = data.samples[0].otu_ids;
@@ -20,9 +23,9 @@ function Plots() {
   
 
     //Display lists for otu_id, sample_values, otu_labels
-    console.log(otu_list);
-    console.log(samples_list);
-    console.log(otu_labels_list);
+    // console.log(otu_list);
+    // console.log(samples_list);
+    // console.log(otu_labels_list);
     
 
     //Only need the 10 otu_id with the highest sample_values, so we need to slice the data from 80 to 10
@@ -40,10 +43,10 @@ function Plots() {
     var labels = otu_labels_list.slice(0,10).reverse();
     
 
-    //Display sliced lists for otu_id, sample_values, otu_labels
-    console.log(otu_id);
-    console.log(samples);
-    console.log(labels)
+    // //Display sliced lists for otu_id, sample_values, otu_labels
+    // console.log(otu_id);
+    // console.log(samples);
+    // console.log(labels)
 
     // Trace1 for Top 10 OTU_ID Found
 
@@ -130,34 +133,21 @@ DropDown();
 
 d3.selectAll("#selDataset").on("change", IDLookup);
 
-function IDLookup(id){
+function IDLookup(){
 
   //Retreive JSON data to be used to extract information
-
-  var dropdownMenu = d3.select("#selDataset");
-
-  var dataset = dropdownMenu.property("value");
-
-  var demographics = [];
-
   d3.json("samples.json").then((data)=> {console.log(data)
 
      //Retreive an metadata list to be displayed in the Demographics Info section
     var metadata = data.metadata;
-    //Display metadata list
-    console.log(metadata)
+    var results = metadata[0]
+    var demographics = d3.select("#sample-metadata");
+    demographics.html("");
 
-    var names = data.names;
-
-    metadata.forEach((id) => {
-
-      var row = d3.select("#sample-metadata").append("tr");
-      Object.entries(id).forEach(([key, values]) => {
-      row.text(key);
-      
-      })
+    Object.entries(results).forEach(([key, value]) => {
+      demographics.append("h6").text(`${key}: ${value}`);
     });
   });
-};
+  };
 
-IDLookup();
+  IDLookup();
