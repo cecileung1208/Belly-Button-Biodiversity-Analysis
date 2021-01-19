@@ -75,6 +75,7 @@ function BuildPlots(id) {
     
     };
 
+
 // DEMOGRAPHICS INFOMRATION
 
 function MetaData(id){
@@ -106,6 +107,43 @@ function MetaData(id){
       });
     });
   };
+
+// BONUS:  GAUGE CHART
+
+function Gauge(id){
+
+  //Retreive JSON data to be used to extract information
+  d3.json("samples.json").then((data)=> {console.log(data)
+    var metadata = data.metadata;
+    console.log(metadata);
+
+
+    var metadata_filter = metadata.filter(object => object.id == id);
+    var results = metadata_filter[0]
+    console.log(results);
+
+    var wfreq = results.wfreq;
+  
+    var trace3 = {
+      domain: { x: [0, 1], y: [0, 1] },
+      value: wfreq,
+      title: { text: "Scrubs per Week" },
+	  	type: "indicator",
+      mode: "gauge+number",
+      gauge: {
+              axis: {range: [null, 9]},
+
+      }
+    }
+
+    var data3 = [trace3]
+
+    var layout3 = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+
+    Plotly.newPlot('gauge', data3, layout3);
+  
+  });
+}
 
 
 //DROPDOWN MENU
@@ -145,6 +183,7 @@ function DropDown(){
   //Call the BuildPlots & MetaData function and display the visuals/demographics info from the first id
     BuildPlots(names[0]);
     MetaData(names[0]);
+    Gauge(names[0]);
   });
 };
 
@@ -153,6 +192,7 @@ function DropDown(){
 function optionChanged(id) {
   BuildPlots(id);
   MetaData(id);
+  Gauge(id);
 }
 
 //Call DropDown() Function
