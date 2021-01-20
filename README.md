@@ -7,10 +7,15 @@ The dataset reveals that a small handful of microbial species (also called opera
 
 ## 1.  Plotly - Building Plots to Determine Sample Values Across OTU IDs
 
-To build an interactive dashboard, we need to use the [json dataset](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Belly%20Button%20Biodiversity/samples.json) to retreive the information and write a [javascipt code](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Belly%20Button%20Biodiversity/static/js/app.js) and a [html file](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Belly%20Button%20Biodiversity/index.html) to display all the information.
+To build an interactive dashboard, we need to use the [samples.json](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Belly%20Button%20Biodiversity/samples.json) to retreive the information and write a javascript code, [app.js](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Belly%20Button%20Biodiversity/static/js/app.js), and a [html file], [index.html](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Belly%20Button%20Biodiversity/index.html), to display all the information.
 
 The below charts and information retrieved will help the audience understand the results of Belly Button Diversity better with graphs and demographic information.
 
+## Dropdown Menu by Individual ID
+
+* Update all of the plots any time that a new sample is selected
+
+![Image](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Images/Dropdown.png)
 
 ### Horizontal Bar Chart 
 Using D3 library to read in samples.json, a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in the individual.
@@ -31,3 +36,21 @@ A Bubble Chart has been created to display all the OTU IDs found in the individu
 * Using **otu_labels** for the **text values**.
 
 ![Image](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Images/bubble_chart.png)
+
+## Gauge Chart
+
+* A Gauge Chart has been plotted to show the weekly washing frequency of the individual.
+* Templates of gauge charts can be found in [https://plot.ly/javascript/gauge-charts/]([https://plot.ly/javascript/gauge-charts/]
+* The Gauge Chart has been modifed from the example gauge code to account for values ranging from 0 through 9.
+
+![Image](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Images/gauge_chart.png)
+
+## Demographic Information
+
+* Display the sample metadata, i.e., an individual's demographic information.
+* Display each key-value pair from the metadata JSON object somewhere on the page.
+
+![Image](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Images/hw03.png)
+
+
+
