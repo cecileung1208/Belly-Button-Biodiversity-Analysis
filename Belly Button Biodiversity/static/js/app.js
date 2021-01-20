@@ -31,7 +31,7 @@ function BuildPlots(id) {
     //console.log(otu_list, samples_list, otu_labels_list)
     //console.log(otu_id, sample_values, labels);
     
-    // Trace1 for Top 10 OTU_ID Found
+    // PLOT H BAR Trace1 for Top 10 OTU_ID Found - 
     var trace1 = {
       x: sample_values,
       y: otu_id,
@@ -48,6 +48,7 @@ function BuildPlots(id) {
       mode: "markers",
       marker: {
         color: otu_list,
+        colorscale: "Viridis",
         size: samples_list,
         }
     };
@@ -58,14 +59,16 @@ function BuildPlots(id) {
     var data2=[trace2]
 
     //Apply the group bar mode to the layout
-    var layout1 = {title: "Top 10 OTU IDs Found",
-                  margin: {
-                            l: 120,
-                            r: 40,
-                            t: 75,
-                            b: 75
-                          },
-                  };
+    var layout1 = {
+      title: "<b>Top 10 OTU IDs Found</b>",
+      font: {family: "Arial" },
+      margin: {
+                l: 120,
+                r: 40,
+                t: 75,
+                b: 75
+              },
+            };
 
     //Render the plot to the div tag with id "plot"
     Plotly.newPlot("bar", data1, layout1);
@@ -107,59 +110,6 @@ function MetaData(id){
       });
     });
   };
-
-// BONUS:  GAUGE CHART
-
-function Gauge(id){
-
-  //Retreive JSON data to be used to extract information
-  d3.json("samples.json").then((data)=> {console.log(data)
-    var metadata = data.metadata;
-    console.log(metadata);
-
-
-    var metadata_filter = metadata.filter(object => object.id == id);
-    var results = metadata_filter[0]
-    console.log(results);
-
-    var wfreq = results.wfreq;
-  
-    var trace3 = {
-      type: "pie",
-      showlegend: false, 
-      hole:0.4,  
-      rotation: 90,
-      values: [270/9, 270/9, 270/9, 270/9, 270/9, 270/9, 270/9, 270/9, 270/9, 270],
-      text: ["0-1","1-2","2-3","3-4","4-5","5-6","6-7","7-8","8-9"],
-      textinfo: "text",
-      textposition:"inside",
-      direction: "clockwise",
-      marker: {
-        colors:["f5f5f5", "#f2f2f2", "ecf9f2","c6ecd7","9fdfbc","#79d2a1","#53c687", "#39ac6d", "#2d8655", "white"],
-        labels: ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8-9',''],
-        hoverinfo: "label"
-      }
-    }
-  
-
-    var data3 = [trace3]
-
-    var layout3 = {
-
-  title: "<b>Belly Button Washing Frequency</b><br>Scrubs per Week",
-  xaxis: {visible: false, range: [-1, 1]},
-  yaxis: {visible: false, range: [-1, 1]}
- };
-
-
-      
-
-      
-    Plotly.newPlot('gauge', data3, layout3);
-  
-  });
-}
-
 
 //DROPDOWN MENU
 
@@ -212,3 +162,90 @@ function optionChanged(id) {
 
 //Call DropDown() Function
 DropDown();
+
+// BONUS:  GAUGE CHART
+
+function Gauge(id){
+  
+
+  //Retreive JSON data to be used to extract information
+  d3.json("samples.json").then((data)=> {console.log(data)
+    var metadata = data.metadata;
+    console.log(metadata);
+
+
+    var metadata_filter = metadata.filter(object => object.id == id);
+    var results = metadata_filter[0]
+    console.log(results);
+
+    var wfreq = results.wfreq;
+
+    var data = [
+      {
+        domain: { x: [0, 1], y: [0, 1] },
+        value: wfreq,
+        title: { text: "<b>Belly Button Washing Frequency</b><br>Scrubs per Week" },
+        type: "indicator",
+        mode: "gauge+number",
+        //delta: { reference: 380 },
+        gauge: {
+          axis: { range: [null, 9] },
+          bar: { color: "darkseagreen"},
+          steps: [
+            {range: [0, 1], color: "#f5f5f5" },
+            {range: [1, 2], color: "#f2f2f2"},
+            {range: [2, 3], color: "#ecf9f2"},
+            {range: [3, 4], color: "#c6ecd7"},
+            {range: [4, 5], color: "#9fdfbc"},
+            {range: [5, 6], color: "#79d2a1"},
+            {range: [6, 7], color: "#53c687"},
+            {range: [7, 8], color: "#39ac6d"},
+            {range: [8, 9], color: "#2d8655"},
+          ],
+          threshold: {
+            line: { color: "darkred", width: 4 },
+            thickness: 0.75,
+            value: wfreq
+          }
+        }
+      }
+    ];
+  
+    var layout = { width: 600, height: 450, margin: { t: 0, b: 0 } };
+    Plotly.newPlot('gauge', data, layout); 
+
+
+  //Plotly.newPlot('gauge', data3, layout3);
+  
+  });
+}
+
+
+
+
+
+
+// var trace3 = {
+//   type: "pie",
+//   showlegend: false, 
+//   hole:0.4,  
+//   rotation: 90,
+//   values: [270/9, 270/9, 270/9, 270/9, 270/9, 270/9, 270/9, 270/9, 270/9, 270],
+//   text: ["0-1","1-2","2-3","3-4","4-5","5-6","6-7","7-8","8-9"],
+//   textinfo: "text",
+//   textposition:"inside",
+//   direction: "clockwise",
+//   marker: {
+
+//     labels: ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8-9',''],
+//     hoverinfo: "label"
+//   }
+// }
+
+// var layout3 = {
+
+//   title: "<b>Belly Button Washing Frequency</b><br>Scrubs per Week",
+//   xaxis: {visible: false, range: [-1, 1]},
+//   yaxis: {visible: false, range: [-1, 1]}
+//  };
+
