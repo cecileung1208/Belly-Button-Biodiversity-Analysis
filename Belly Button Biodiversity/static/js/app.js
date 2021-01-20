@@ -1,4 +1,8 @@
 //HORIZONTAL BAR PLOT - TOP 10 OTU ID WITH HIGHEST SAMPLE VALUES
+//BUBBLE CHART - ALL OTU ID SAMPLE VALUES
+
+
+//Create function to build h-bar graph and bubble chart to display per ID.
 function BuildPlots(id) {
 
   //Retreive JSON data to be used to extract information
@@ -31,7 +35,7 @@ function BuildPlots(id) {
     //console.log(otu_list, samples_list, otu_labels_list)
     //console.log(otu_id, sample_values, labels);
     
-    // PLOT H BAR Trace1 for Top 10 OTU_ID Found - 
+    // PLOT H BAR Trace1 for Top 10 OTU_ID Found 
     var trace1 = {
       x: sample_values,
       y: otu_id,
@@ -40,7 +44,20 @@ function BuildPlots(id) {
       orientation: "h",
     }
 
-    // Trace 2 for the Sample Values for all the OTU_ID under each ID
+    //Apply the group bar mode to the layout
+    var layout1 = {
+      margin: {
+                l: 120,
+                r: 40,
+                t: 75,
+                b: 75
+              },
+            };
+
+    //data to display for trace 1
+    var data1 = [trace1];
+
+    // PLOT BUBBLE CHART for the Sample Values for all the OTU_ID under each ID
     var trace2={
       x: otu_list,
       y: samples_list,
@@ -53,34 +70,25 @@ function BuildPlots(id) {
         }
     };
     
-
-    //data
-    var data1 = [trace1];
+    //data to display for trace 2
     var data2=[trace2]
 
-    //Apply the group bar mode to the layout
-    var layout1 = {
-      title: "<b>Top 10 OTU IDs Found</b>",
-      font: {family: "Arial" },
-      margin: {
-                l: 120,
-                r: 40,
-                t: 75,
-                b: 75
-              },
-            };
+    
+    //Bubbule Chart Layout
+    var layout2 = {
+          xaxis: {title: 'OTU ID'},
+          }
+       
 
-    //Render the plot to the div tag with id "plot"
+    //Render the plots to the div tag with id "plot"
     Plotly.newPlot("bar", data1, layout1);
-    Plotly.newPlot("bubble", data2);
+    Plotly.newPlot("bubble", data2, layout2);
 
     })
     
     };
 
-
-// DEMOGRAPHICS INFOMRATION
-
+ // DEMOGRAPHICS INFOMRATION
 function MetaData(id){
 
   //Retreive JSON data to be used to extract information
@@ -180,7 +188,7 @@ function Gauge(id){
 
     var wfreq = results.wfreq;
 
-    var data = [
+    var trace3 = [
       {
         domain: { x: [0, 1], y: [0, 1] },
         value: wfreq,
@@ -211,41 +219,9 @@ function Gauge(id){
       }
     ];
   
-    var layout = { width: 600, height: 450, margin: { t: 0, b: 0 } };
-    Plotly.newPlot('gauge', data, layout); 
+    var layout3 = { width: 600, height: 450, margin: { t: 0, b: 0 } };
+    Plotly.newPlot('gauge', trace3, layout3); 
 
-
-  //Plotly.newPlot('gauge', data3, layout3);
-  
   });
 }
-
-
-
-
-
-
-// var trace3 = {
-//   type: "pie",
-//   showlegend: false, 
-//   hole:0.4,  
-//   rotation: 90,
-//   values: [270/9, 270/9, 270/9, 270/9, 270/9, 270/9, 270/9, 270/9, 270/9, 270],
-//   text: ["0-1","1-2","2-3","3-4","4-5","5-6","6-7","7-8","8-9"],
-//   textinfo: "text",
-//   textposition:"inside",
-//   direction: "clockwise",
-//   marker: {
-
-//     labels: ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8-9',''],
-//     hoverinfo: "label"
-//   }
-// }
-
-// var layout3 = {
-
-//   title: "<b>Belly Button Washing Frequency</b><br>Scrubs per Week",
-//   xaxis: {visible: false, range: [-1, 1]},
-//   yaxis: {visible: false, range: [-1, 1]}
-//  };
 
