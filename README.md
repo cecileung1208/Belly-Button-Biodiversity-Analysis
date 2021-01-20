@@ -53,4 +53,12 @@ A Bubble Chart has been created to display all the OTU IDs found in the individu
 ![Image](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Images/hw03.png)
 
 
+##  Final Dashboard Deployment
+* Upon completing the horizontal bar graph, bubble chart, gauge chart and demographics information, the final output looks like this.
+* The app has been deployed to a GitHub Pages.  
+* Link: [https://cecileung1208.github.io/Plot.ly-Belly-Button-Biodiversity/](https://cecileung1208.github.io/Plot.ly-Belly-Button-Biodiversity/)
+
+![Image](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Images/final%20dashboard.png)
+
+
 
