@@ -179,15 +179,22 @@ function Gauge(id){
   //Retreive JSON data to be used to extract information
   d3.json("samples.json").then((data)=> {console.log(data)
     var metadata = data.metadata;
-    console.log(metadata);
-
-
+    
+    //Filter metadata by ID
     var metadata_filter = metadata.filter(object => object.id == id);
-    var results = metadata_filter[0]
-    console.log(results);
+    var results = metadata_filter[0];
 
+     //Retrieve the washing fequency (wfreq) from filtered id
     var wfreq = results.wfreq;
+    console.log(wfreq)
 
+  //Display info on console
+  //console.log(metadata);
+  //console.log(results);
+  //console.log(wfreq)
+
+  
+    // PLOT GAUGE CHART for the washign frequency (wfreq) under each ID
     var trace3 = [
       {
         domain: { x: [0, 1], y: [0, 1] },
@@ -218,8 +225,12 @@ function Gauge(id){
         }
       }
     ];
-  
+
+
+    //Gauge Chart Layout
     var layout3 = { width: 600, height: 450, margin: { t: 0, b: 0 } };
+    
+     //Render the plots to the div tag with id "plot"
     Plotly.newPlot('gauge', trace3, layout3); 
 
   });
