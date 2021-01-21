@@ -1,8 +1,5 @@
-//HORIZONTAL BAR PLOT - TOP 10 OTU ID WITH HIGHEST SAMPLE VALUES
-//BUBBLE CHART - ALL OTU ID SAMPLE VALUES
 
-
-//Create function to build h-bar graph and bubble chart to display per ID.
+//PLOT FUNCTION - Display h-bar & bubble charts by ID
 function BuildPlots(id) {
 
   //Retreive JSON data to be used to extract information
@@ -74,7 +71,7 @@ function BuildPlots(id) {
     var data2=[trace2]
 
     
-    //Bubbule Chart Layout
+    //Bubble Chart Layout
     var layout2 = {
           xaxis: {title: 'OTU ID'},
           }
@@ -88,7 +85,7 @@ function BuildPlots(id) {
     
     };
 
- // DEMOGRAPHICS INFOMRATION
+ // DEMOGRAPHICS INFORMATION
 function MetaData(id){
 
   //Retreive JSON data to be used to extract information
@@ -170,6 +167,8 @@ function optionChanged(id) {
 
 //Call DropDown() Function
 DropDown();
+
+
 
 // BONUS:  GAUGE CHART
 
