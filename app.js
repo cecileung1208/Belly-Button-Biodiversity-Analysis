@@ -74,6 +74,7 @@ function BuildPlots(id) {
     //Bubble Chart Layout
     var layout2 = {
           xaxis: {title: 'OTU ID'},
+          height: 600
           }
        
 
