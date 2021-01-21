@@ -2,7 +2,7 @@
 
 ![Image](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Images/microbes-sem.jpg)
 
-An [interactive dashboard](#2--final-dashboard-deployment) has been built to explore the [Belly Button Biodiversity dataset](http://robdunnlab.com/projects/belly-button-biodiversity/), which catalogs the microbes that colonize human navels.<br><br>
+An [interactive dashboard](final-dashboard-output) has been built to explore the [Belly Button Biodiversity dataset](http://robdunnlab.com/projects/belly-button-biodiversity/), which catalogs the microbes that colonize human navels.<br><br>
 The dataset reveals that a small handful of microbial species (also called operational taxonomic units, or OTUs, in the study) were present in more than 70% of people, while the rest were relatively rare.<br><br>
 Please visit the [website](https://cecileung1208.github.io/Plot.ly-Belly-Button-Biodiversity/) to look at the results for each sample.
 
@@ -10,13 +10,7 @@ Please visit the [website](https://cecileung1208.github.io/Plot.ly-Belly-Button-
 
 To build an interactive dashboard, we need to use the [samples.json](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Belly%20Button%20Biodiversity/samples.json) to retreive the information and write a javascript code, [app.js](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Belly%20Button%20Biodiversity/static/js/app.js), and a [html file], [index.html](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Belly%20Button%20Biodiversity/index.html), to display all the information.
 
-The below charts and information retrieved will help the audience understand the results of Belly Button Diversity better with graphs, demographic information and dropdown menus.
-
-## Dropdown Menu by Individual ID
-
-* Update all of the plots any time that a new sample is selected
-
-![Image](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Images/Dropdown.png)
+The below charts and information will help the audience understand the results of Belly Button Diversity better with graphs, demographic information and dropdown menus.
 
 ### Horizontal Bar Graph
 Using D3 library to read in samples.json, a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in the individual.
@@ -52,6 +46,12 @@ A Bubble Chart has been created to display all the OTU IDs found in the individu
 * Display each key-value pair from the metadata JSON object somewhere on the page.
 
 ![Image](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Images/hw03.png)
+
+## Dropdown Menu by Individual ID
+
+* Update all of the plots any time that a new sample is selected
+
+![Image](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Images/Dropdown.png)
 
 
 ## 2. Final Dashboard Deployment
