@@ -22,8 +22,8 @@ Create an interactive dashboard with a dropdown menu for each subject ID by prov
 
 
 ## Scripts
-[HTML Website](https://github.com/cecileung1208/Belly-Button-Biodiversity-Analysis/blob/main/Belly%20Button%20Biodiversity/index.html)
-[Javascript Visualizations](https://github.com/cecileung1208/Belly-Button-Biodiversity-Analysis/blob/main/Belly%20Button%20Biodiversity/static/js/app.js)
+* [HTML Website](https://github.com/cecileung1208/Belly-Button-Biodiversity-Analysis/blob/main/Belly%20Button%20Biodiversity/index.html)
+* [Javascript Visualizations](https://github.com/cecileung1208/Belly-Button-Biodiversity-Analysis/blob/main/Belly%20Button%20Biodiversity/static/js/app.js)
 
 ## Results
 https://cecileung1208.github.io/Belly-Button-Biodiversity-Analysis/
