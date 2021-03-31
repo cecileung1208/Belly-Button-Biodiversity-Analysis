@@ -23,6 +23,8 @@ function BuildPlots(id) {
     var sample_values = samples_list.slice(0,10).reverse();
     var labels = otu_labels_list.slice(0,10).reverse();
     var otu_id = otu_list.slice(0,10).reverse();
+
+    console.log(sample_values, otu_id)
     
     //Insert "OTU_ID" infront of each value in the otu_id array
     var otu_id = otu_id.map(row => "OTU_ID " + row)
