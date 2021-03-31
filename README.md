@@ -15,6 +15,7 @@ Create an interactive dashboard with a dropdown menu for each subject ID by prov
 4.  Bubble Chart for the Concentration of Operational Taxonomic Units (OTUs) for each Belly Button Sample
 
 ## Datasets
+[Belly Button Biodiversity Samples Dataset](https://github.com/cecileung1208/Belly-Button-Biodiversity-Analysis/blob/main/Belly%20Button%20Biodiversity/samples.json)
 
 ## Method
 
