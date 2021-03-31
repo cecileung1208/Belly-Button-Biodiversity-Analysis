@@ -8,7 +8,7 @@ The objective of this project is to create an webpage with an interactive dashbo
 
 ## Requirements
 
-For each Subject ID, provide the following: 
+Create an interactive dashboard with a dropdown menu for each subject ID by providing the following:
 1.  Demographics Information that includes ID, ethnicity, gender, age, location, BB Type and Washing Frequency
 2.  Horizontal Bar Chart on Top 10 Operational Taxonomic Units (OTUs) Found
 3.  Gauge Chart for Weekly Washing Frequency 
