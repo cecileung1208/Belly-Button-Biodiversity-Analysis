@@ -4,7 +4,15 @@
 
 ## Background
 
+The objective of this project is to create an webpage with an interactive dashboard using various visualizations to analyze Belly Button Biodiversity for different samples. Datasets are provided in JSON format where D3 was used to import and read the data while using Plotly to create the required visualizations.
+
 ## Requirements
+
+For each Subject ID, provide the following: 
+1.  Demographics Information that includes ID, ethnicity, gender, age, location, BB Type and Washing Frequency
+2.  Horizontal Bar Chart on Top 10 Operational Taxonomic Units (OTUs) Found
+3.  Gauge Chart for Weekly Washing Frequency 
+4.  Bubble Chart for the Concentration of Operational Taxonomic Units (OTUs) for each Belly Button Sample
 
 ## Datasets
 
@@ -14,8 +22,7 @@
 
 ## Results
 
-An [interactive dashboard](#2-final-dashboard-deployment) has been built to explore the [Belly Button Biodiversity dataset](http://robdunnlab.com/projects/belly-button-biodiversity/), which catalogs the microbes that colonize human navels.<br><br>
-The dataset reveals that a small handful of microbial species (also called operational taxonomic units, or OTUs, in the study) were present in more than 70% of people, while the rest were relatively rare.<br><br>
+
 Please visit the [website](https://cecileung1208.github.io/Plot.ly-Belly-Button-Biodiversity/) to look at the results for each sample.
 
 ## 1.  Plotly - Building Plots to Determine Sample Values Across OTU IDs
