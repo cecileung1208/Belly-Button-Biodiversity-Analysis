@@ -37,4 +37,6 @@ Create an interactive dashboard with a dropdown menu for each subject ID by prov
 ## Results
 https://cecileung1208.github.io/Belly-Button-Biodiversity-Analysis/
 
+![Image](https://github.com/cecileung1208/Belly-Button-Biodiversity-Analysis/blob/main/Images/hw02.png)
+
 
