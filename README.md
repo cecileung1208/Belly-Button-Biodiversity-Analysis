@@ -1,65 +1,42 @@
-# Plot.ly-Belly-Button-Biodiversity
+# Belly Button Biodiversity Analysis
 
 ![Image](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Images/microbes-sem.jpg)
 
-An [interactive dashboard](#2-final-dashboard-deployment) has been built to explore the [Belly Button Biodiversity dataset](http://robdunnlab.com/projects/belly-button-biodiversity/), which catalogs the microbes that colonize human navels.<br><br>
-The dataset reveals that a small handful of microbial species (also called operational taxonomic units, or OTUs, in the study) were present in more than 70% of people, while the rest were relatively rare.<br><br>
-Please visit the [website](https://cecileung1208.github.io/Plot.ly-Belly-Button-Biodiversity/) to look at the results for each sample.
+## Background
 
-## 1.  Plotly - Building Plots to Determine Sample Values Across OTU IDs
+The objective of this project is to create an webpage with an interactive dashboard using various visualizations to analyze Belly Button Biodiversity for different samples. Datasets are provided in JSON format where D3 was used to import and read the data while using Plotly to create the required visualizations.
 
-To build an interactive dashboard, we need to use the [samples.json](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Belly%20Button%20Biodiversity/samples.json) to retreive the information and write a javascript code, [app.js](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Belly%20Button%20Biodiversity/static/js/app.js), and a [html file], [index.html](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Belly%20Button%20Biodiversity/index.html), to display all the information.
+## Requirements
 
-The below charts and information will help the audience understand the results of Belly Button Diversity better with graphs, demographic information and dropdown menus.
+Create an interactive dashboard with a dropdown menu for each subject ID by providing the following:
+1.  Demographics Information that includes ID, ethnicity, gender, age, location, BB Type and Washing Frequency
+2.  Horizontal Bar Chart on Top 10 Operational Taxonomic Units (OTUs) Found
+3.  Gauge Chart for Weekly Washing Frequency 
+4.  Bubble Chart for the Concentration of Operational Taxonomic Units (OTUs) for each Belly Button Sample
 
-### Horizontal Bar Graph
-Using D3 library to read in samples.json, a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in the individual.
+## Datasets
+* [Belly Button Biodiversity Samples Dataset](https://github.com/cecileung1208/Belly-Button-Biodiversity-Analysis/blob/main/Belly%20Button%20Biodiversity/samples.json)
 
-* Using **sample_values** as the **values** for the bar chart.
-* Using **otu_ids** as the **labels** for the bar chart.
-* Using **otu_labels** as the **hovertext** for the chart.
+## Method
 
-![Image](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Images/hw01.png)
-
-### Bubble Chart
-A Bubble Chart has been created to display all the OTU IDs found in the individual.
-
-* Using **otu_ids** for the **x values**.
-* Using **sample_values** for the **y values**.
-* Using **sample_values** for the **marker size**.
-* Using **otu_ids** for the **marker colors**.
-* Using **otu_labels** for the **text values**.
-
-![Image](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Images/bubble_chart.png)
-
-## Gauge Chart
-
-* A Gauge Chart has been plotted to show the weekly washing frequency of the individual.
-* Templates of gauge charts can be found in [https://plot.ly/javascript/gauge-charts/]([https://plot.ly/javascript/gauge-charts/]
-* The Gauge Chart has been modifed from the example gauge code to account for values ranging from 0 through 9.
-
-![Image](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Images/gauge_chart.png)
-
-## Demographic Information
-
-* Display the sample metadata, i.e., an individual's demographic information.
-* Display each key-value pair from the metadata JSON object somewhere on the page.
-
-![Image](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Images/hw03.png)
-
-## Dropdown Menu by Individual ID
-
-* Update all of the plots any time that a new sample is selected
-
-![Image](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Images/Dropdown.png)
+1. Import the belly button sample data from the JSON file and create a function for web page initialization.
+2. Extract each sample ID number and append it to the HTML dropdown menu container.
+3. Extract and process the demographic information and OTU data for the first sample.
+4. Append demographic information for the first sample to the appropriate HTML container.
+5. Generate a bar chart of the top ten OTUs by concentration in the first sample and connect it to the appropriate HTML container.
+6. Generate a bubble chart of the concentrations of all of the OTUs in the first sample and connect it to the appropriate HTML container.
+7. Generate a gauge chart of the weekly wash frequency of the first sample and connect it to the appropriate HTML container.
+8. Create a function to monitor and extract the currently selected sample ID number from the HTML dropdown menu.
+9. Repeat steps three through seven for the currently selected sample ID number.
 
 
-## 2. Final Dashboard Deployment
-* See below for the final dashboard output that includes the horizontal bar graph, bubble chart, gauge chart and demographics information.
-* The app has been deployed to a GitHub Pages and all the related files are in the [deployment branch](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/tree/deployment).
-* Link: [https://cecileung1208.github.io/Plot.ly-Belly-Button-Biodiversity/](https://cecileung1208.github.io/Plot.ly-Belly-Button-Biodiversity/)
+## Scripts
+* [HTML Website](https://github.com/cecileung1208/Belly-Button-Biodiversity-Analysis/blob/main/Belly%20Button%20Biodiversity/index.html)
+* [Javascript Visualizations](https://github.com/cecileung1208/Belly-Button-Biodiversity-Analysis/blob/main/Belly%20Button%20Biodiversity/static/js/app.js)
 
-![Image](https://github.com/cecileung1208/Plot.ly-Belly-Button-Biodiversity/blob/main/Images/final%20dashboard.png)
+## Results
+https://cecileung1208.github.io/Belly-Button-Biodiversity-Analysis/
 
-[Back to Top](#Plotly-Belly-Button-Biodiversity)
-     
+![Image](https://github.com/cecileung1208/Belly-Button-Biodiversity-Analysis/blob/main/Images/hw02.png)
+
+
